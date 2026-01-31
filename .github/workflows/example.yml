@@ -5,6 +5,7 @@ on:
     branches: [main]
   workflow_dispatch:
 
+
 permissions:
   contents: read
   pages: write
@@ -23,13 +24,12 @@ jobs:
           node-version: 20
           cache: npm
 
-      - name: download deps 
+      - name: download deps
         run: npm ci
 
       - name: Build project
-        run:
-          npm run build
-      
+        run: npm run build
+
       - name: upload artifacts
         uses: actions/upload-pages-artifact@v3
         with:
@@ -41,7 +41,7 @@ jobs:
     if: github.event_name == 'workflow_dispatch'
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{steps.deployment.outputs.page_url}}
 
     steps:
       - name: deploy
