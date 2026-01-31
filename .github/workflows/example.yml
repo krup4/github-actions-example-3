@@ -42,11 +42,13 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout
+        uses: actions/checkout@v4
       - name: vitest
         run: npx vitest run | tee test-result.log
       - name: upload logs
         if: always()
-        uses: actions/upload_artifacts@v4
+        uses: actions/upload-artifact@v4
         with:
           name: vitest-logs
           path: test-results.log
